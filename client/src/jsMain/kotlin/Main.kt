@@ -41,7 +41,7 @@ fun main() {
 
         if (window.navigator.serviceWorker != null) {
             console.log("### Registering Service Worker")
-            window.navigator.serviceWorker.register("/serviceWorker.js")
+            window.navigator.serviceWorker.register("/ComposePlaygroundKMM/serviceWorker.js")
                 .then { console.log("Service worker registered!") }
                 .catch { console.error("Service Worker registration failed: $it") }
         }
