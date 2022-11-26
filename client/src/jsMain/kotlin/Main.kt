@@ -48,11 +48,9 @@ fun main() {
 
         Window("Compose Playground") {
             val clip = with(LocalDensity.current) { innerSize.toDpSize() }
-            Box(modifier = Modifier.size(clip)) {
-                MainPlayground(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
+            MainPlayground(
+                modifier = Modifier.size(clip)
+            )
         }
     }
 }
