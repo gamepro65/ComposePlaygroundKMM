@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d62d811-a989-45fc-b3fb-2cdd93604111" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/client_js.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/serviceWorker_js.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build-and-publish-kjs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-and-publish-kjs.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/commonMain/kotlin/ui/Playground.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/commonMain/kotlin/ui/Playground.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +50,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ComposePlaygroundKMM [build]">
+  <component name="RunManager" selected="Gradle.ComposePlaygroundKMM:client [jsBrowserDevelopmentRun]">
     <configuration name="ComposePlaygroundKMM [build; ./gradlew build;]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -100,10 +95,32 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ComposePlaygroundKMM:client [jsBrowserDevelopmentRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/client" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jsBrowserDevelopmentRun" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ComposePlaygroundKMM [build; ./gradlew build;]" />
+        <item itemvalue="Gradle.ComposePlaygroundKMM:client [jsBrowserDevelopmentRun]" />
         <item itemvalue="Gradle.ComposePlaygroundKMM [build]" />
+        <item itemvalue="Gradle.ComposePlaygroundKMM [build; ./gradlew build;]" />
       </list>
     </recent_temporary>
   </component>
