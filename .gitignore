@@ -3,4 +3,6 @@
 /build/
 /client/build/
 /serviceWorker/build/
+/.idea/
 /.idea
+local.properties
