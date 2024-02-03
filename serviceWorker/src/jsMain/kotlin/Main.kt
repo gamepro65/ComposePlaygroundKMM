@@ -20,6 +20,10 @@ fun installServiceWorker() {
             "./client.js",
             "./kotlin-192.png",
             "./kotlin-512.png",
+            "./manifest.webmanifest",
+            "./skiko.js",
+            "./skiko.wasm",
+            "./serviceWorker.js"
     )
 
     self.addEventListener("install", { event ->
