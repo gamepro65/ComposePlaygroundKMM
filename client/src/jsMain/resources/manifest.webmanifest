@@ -14,10 +14,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "/ComposePlaygroundKMM/index.html",
   "orientation": "portrait",
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "scope": "/",
   "theme_color": "#FFFFFF"
 }
