@@ -4,17 +4,33 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.platform.LocalDensity
+import kotlinx.datetime.Clock
+import kotlinx.datetime.asTimeSource
+import kotlin.time.ExperimentalTime
+import kotlin.time.TimeSource
 
+@OptIn(ExperimentalTime::class)
 @Composable
 fun MainPlayground(
     modifier: Modifier = Modifier
 ) {
-    BoxWithConstraints(modifier = modifier) {
+    val frameTimes = remember { mutableStateListOf<Long>() }
+    var lastFrameTime = remember { TimeSource.Monotonic.markNow() }
+    BoxWithConstraints(modifier = modifier.drawWithContent {
+        drawContent()
+        frameTimes.add(lastFrameTime.elapsedNow().inWholeMilliseconds)
+        if (frameTimes.size > 100) {
+            frameTimes.removeFirst()
+        }
+        lastFrameTime = TimeSource.Monotonic.markNow()
+    }) {
         var textSize by remember { mutableStateOf<LayoutCoordinates?>(null) }
         var offset by remember { mutableStateOf(Offset(0F, 0F)) }
         var velocity by remember { mutableStateOf(Offset(3F, 3F)) }
@@ -24,6 +40,12 @@ fun MainPlayground(
         if (offset.y + (textSize?.size?.height ?: 0) > with(LocalDensity.current) { maxHeight.toPx() } || offset.y < 0) {
             velocity = velocity.copy(y = -velocity.y)
         }
+
+        Text(
+            modifier = Modifier.align(Alignment.TopEnd),
+            text = "FPS: ${(1000.0 / frameTimes.average()).toInt()}"
+        )
+
         Text(
             modifier = Modifier.offset(
                 with(LocalDensity.current) { offset.x.toDp() },
