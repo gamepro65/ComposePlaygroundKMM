@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="serviceWorker-js">
-    <output-path>$PROJECT_DIR$/serviceWorker/build/libs</output-path>
-    <root id="archive" name="serviceWorker-js.jar" />
-  </artifact>
-</component>
