@@ -5,20 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Compose Playground</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=0" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="manifest" href="./manifest.webmanifest">
     <style>
     body {margin:0; padding:0;overflow: hidden;}
     #parent {
-        position:absolute;
-        background-size:100% 100%;
+        position:fixed;
         width:100%;
         height:100%;
     }
     #ComposeTarget {
-        position: absolute;
+        position: fixed;
         left:0px;
         top:0px;
         width:100%;
