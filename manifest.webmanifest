@@ -15,7 +15,7 @@
     }
   ],
   "start_url": "/ComposePlaygroundKMM/index.html",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#FFFFFF",
   "display": "standalone",
   "theme_color": "#FFFFFF"
