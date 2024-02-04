@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 group "com.drury.composeplayground"
@@ -10,45 +13,45 @@ repositories {
     mavenLocal()
     google()
     mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 kotlin {
-    js(IR) {
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = "client"
         browser {
-            testTask {
-                testLogging.showStandardStreams = true
-                useKarma {
-                    useChromeHeadless()
-                    useFirefox()
+            commonWebpackConfig {
+                outputFileName = "client.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(project.projectDir.path)
+                        add(project.projectDir.path + "/commonMain/")
+                        add(project.projectDir.path + "/wasmJsMain/")
+                    }
                 }
             }
         }
         binaries.executable()
     }
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.material3)
-                implementation(compose.material)
-                implementation(compose.runtime)
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-            }
+        commonMain.dependencies {
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            implementation(compose.material3)
+            implementation(compose.material)
+            implementation(compose.runtime)
+            implementation(libs.kotlin.datetime)
         }
 
-        val jsMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.6.0")
-            }
+        jsMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.6.0")
         }
 
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
+        jsTest.dependencies {
+            implementation(kotlin("test-js"))
         }
     }
 }
@@ -57,5 +60,5 @@ compose.experimental {
     web.application {}
 }
 
-tasks["jsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
-tasks["jsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
+tasks["wasmJsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
+tasks["wasmJsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
