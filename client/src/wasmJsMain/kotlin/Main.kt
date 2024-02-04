@@ -1,14 +1,14 @@
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.window.Window
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
-import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.workers.ServiceWorkerGlobalScope
 import ui.MainPlayground
@@ -34,16 +34,16 @@ fun main() {
         Unit
     }
 
-    onWasmReady {
+//    onWasmReady {
         val canvas = window.document.getElementById("ComposeTarget") as HTMLCanvasElement
         canvas.width = window.screen.width
         canvas.height = window.screen.height
 
         if (window.navigator.serviceWorker != null) {
-            console.log("### Registering Service Worker")
+            println("### Registering Service Worker")
             window.navigator.serviceWorker.register("/ComposePlaygroundKMM/serviceWorker.js")
-                .then { console.log("Service worker registered!") }
-                .catch { console.error("Service Worker registration failed: $it") }
+                .then { println("Service worker registered!"); it }
+                .catch { println("Service Worker registration failed: $it"); it }
         }
 
         Window("Compose Playground") {
@@ -52,6 +52,6 @@ fun main() {
                 modifier = Modifier.size(clip)
             )
         }
-    }
+//    }
 }
 
