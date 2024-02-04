@@ -12,6 +12,7 @@ import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.workers.ServiceWorkerGlobalScope
 import ui.MainPlayground
+import kotlin.math.max
 
 external val self: ServiceWorkerGlobalScope
 val scope = MainScope()
@@ -36,8 +37,8 @@ fun main() {
 
     onWasmReady {
         val canvas = window.document.getElementById("ComposeTarget") as HTMLCanvasElement
-        canvas.width = window.screen.width
-        canvas.height = window.screen.height
+        canvas.width = max(window.screen.width, window.screen.height)
+        canvas.height = max(window.screen.width, window.screen.height)
 
         if (window.navigator.serviceWorker != null) {
             console.log("### Registering Service Worker")
