@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.window.Window
 import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
+import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.workers.ServiceWorkerGlobalScope
 import ui.MainPlayground
@@ -34,16 +35,16 @@ fun main() {
         Unit
     }
 
-//    onWasmReady {
+    onWasmReady {
         val canvas = window.document.getElementById("ComposeTarget") as HTMLCanvasElement
         canvas.width = window.screen.width
         canvas.height = window.screen.height
 
         if (window.navigator.serviceWorker != null) {
-            println("### Registering Service Worker")
+            console.log("### Registering Service Worker")
             window.navigator.serviceWorker.register("/ComposePlaygroundKMM/serviceWorker.js")
-                .then { println("Service worker registered!"); it }
-                .catch { println("Service Worker registration failed: $it"); it }
+                .then { console.log("Service worker registered!") }
+                .catch { console.error("Service Worker registration failed: $it") }
         }
 
         Window("Compose Playground") {
@@ -52,6 +53,6 @@ fun main() {
                 modifier = Modifier.size(clip)
             )
         }
-//    }
+    }
 }
 

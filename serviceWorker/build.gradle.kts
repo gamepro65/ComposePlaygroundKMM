@@ -28,8 +28,8 @@ tasks.register<Copy>("copyServiceWorker") {
     group = "build"
     description = "Copies unprocessed .js output to client's development build directory."
 
-    from("$buildDir/dist/js/productionExecutable")
-    into("${parent?.buildDir}/distributions")
+    from("$buildDir/distributions")
+    into("${project(":client").buildDir}/distributions")
 }
 
 tasks.register<Copy>("copyServiceWorkerWebpack") {
@@ -38,6 +38,6 @@ tasks.register<Copy>("copyServiceWorkerWebpack") {
     group = "build"
     description = "Copies unprocessed .js output to client's development build directory."
 
-    from("$buildDir/dist/js/productionExecutable")
+    from("$buildDir/distributions")
     into("${project(":client").buildDir}/processedResources/js/main")
 }

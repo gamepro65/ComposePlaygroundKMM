@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
@@ -16,19 +13,13 @@ repositories {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        moduleName = "client"
+    js(IR) {
         browser {
-            commonWebpackConfig {
-                outputFileName = "client.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                    static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(project.projectDir.path)
-                        add(project.projectDir.path + "/commonMain/")
-                        add(project.projectDir.path + "/wasmJsMain/")
-                    }
+            testTask {
+                testLogging.showStandardStreams = true
+                useKarma {
+                    useChromeHeadless()
+                    useFirefox()
                 }
             }
         }
@@ -60,5 +51,5 @@ compose.experimental {
     web.application {}
 }
 
-tasks["wasmJsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
-tasks["wasmJsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
+tasks["jsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
+tasks["jsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
