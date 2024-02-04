@@ -21,7 +21,7 @@ subprojects {
             group = "build"
             description = "Copies the distribution files to the root project distribution directory."
 
-            from("$buildDir/processedResources/wasmJs/main")
+            from("$buildDir/dist/wasmJs/productionExecutable")
             into("${parent?.buildDir}/distributions")
         }
 
