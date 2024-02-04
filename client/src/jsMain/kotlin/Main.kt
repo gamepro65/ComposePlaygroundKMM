@@ -48,9 +48,14 @@ fun main() {
 
         Window("Compose Playground") {
             val clip = with(LocalDensity.current) { innerSize.toDpSize() }
-            MainPlayground(
-                modifier = Modifier.size(clip)
-            )
+            Box {
+                val canvas = window.document.getElementById("ComposeTarget") as HTMLCanvasElement
+                Text(text = "${clip.width} x ${clip.height} : ${canvas.width} x ${canvas.height}")
+                MainPlayground(
+                    modifier = Modifier.size(clip)
+                )
+            }
+
         }
     }
 }
