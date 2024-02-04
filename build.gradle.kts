@@ -1,6 +1,8 @@
 plugins {
-    kotlin("multiplatform") apply false
-    id("org.jetbrains.compose") apply false
+    // this is necessary to avoid the plugins to be loaded multiple times
+    // in each subproject's classloader
+    alias(libs.plugins.jetbrainsCompose) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
 }
 
 group = "org.example"
@@ -12,7 +14,6 @@ subprojects {
         google()
         gradlePluginPortal()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 
     afterEvaluate {
@@ -20,7 +21,7 @@ subprojects {
             group = "build"
             description = "Copies the distribution files to the root project distribution directory."
 
-            from("$buildDir/distributions")
+            from("$buildDir/processedResources/wasmJs/main")
             into("${parent?.buildDir}/distributions")
         }
 
