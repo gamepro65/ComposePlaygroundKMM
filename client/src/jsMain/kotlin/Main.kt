@@ -1,7 +1,5 @@
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalDensity
@@ -49,14 +47,9 @@ fun main() {
 
         Window("Compose Playground") {
             val clip = with(LocalDensity.current) { innerSize.toDpSize() }
-            Box {
-                val canvas = window.document.getElementById("ComposeTarget") as HTMLCanvasElement
-                Text(text = "${clip.width} x ${clip.height} : ${canvas.width} x ${canvas.height}")
-                MainPlayground(
-                    modifier = Modifier.size(clip)
-                )
-            }
-
+            MainPlayground(
+                modifier = Modifier.size(clip)
+            )
         }
     }
 }
