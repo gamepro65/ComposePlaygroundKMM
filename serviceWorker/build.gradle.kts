@@ -31,13 +31,13 @@ tasks.register<Copy>("copyServiceWorker") {
     from("$buildDir/dist/js/productionExecutable")
     into("${parent?.buildDir}/distributions")
 }
-
-tasks.register<Copy>("copyServiceWorkerWebpack") {
-    dependsOn("jsBrowserDistribution")
-
-    group = "build"
-    description = "Copies unprocessed .js output to client's development build directory."
-
-    from("$buildDir/dist/js/productionExecutable")
-    into("${project(":client").buildDir}/processedResources/js/main")
-}
+//
+//tasks.register<Copy>("copyServiceWorkerWebpack") {
+//    dependsOn("jsBrowserDistribution")
+//
+//    group = "build"
+//    description = "Copies unprocessed .js output to client's development build directory."
+//
+//    from("$buildDir/dist/js/productionExecutable")
+//    into("${parent?.projectDir}/client/build/processedResources/wasmJs/main")
+//}

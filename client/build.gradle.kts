@@ -28,6 +28,7 @@ kotlin {
                         add(project.projectDir.path)
                         add(project.projectDir.path + "/commonMain/")
                         add(project.projectDir.path + "/wasmJsMain/")
+                        add(parent?.path + "/serviceWorker/build/dist/js/productionExecutable/")
                     }
                 }
             }
@@ -61,4 +62,4 @@ compose.experimental {
 }
 
 tasks["wasmJsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
-tasks["wasmJsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
+//tasks["wasmJsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")

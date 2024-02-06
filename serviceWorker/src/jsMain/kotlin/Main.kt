@@ -15,15 +15,20 @@ const val MAIN_CACHE = "mainCache"
 
 fun installServiceWorker() {
     val offlineContent = arrayOf(
-            "./index.html",
-            "./index.css",
-            "./client.js",
-            "./kotlin-192.png",
-            "./kotlin-512.png",
-            "./manifest.webmanifest",
-            "./skiko.js",
-            "./skiko.wasm",
-            "./serviceWorker.js"
+        "./58c97d5c0661070cab69.wasm",
+        "./135.js",
+        "./135.jsLICENSE.txt",
+        "./366.js",
+        "./index.html",
+        "./index.css",
+        "./client.js",
+        "./client.wasm",
+        "./kotlin-192.png",
+        "./kotlin-512.png",
+        "./manifest.webmanifest",
+        "./skiko.js",
+        "./skiko.wasm",
+        "./serviceWorker.js"
     )
 
     self.addEventListener("install", { event ->
@@ -39,7 +44,7 @@ fun installServiceWorker() {
     })
 
     // using the "Network falling back to cache" strategy (https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker#network_falling_back_to_the_cache)
-    self.addEventListener("fetch",  { event ->
+    self.addEventListener("fetch", { event ->
         event as FetchEvent
         if (event.request.url.contains("http").not()) return@addEventListener
 
