@@ -62,4 +62,4 @@ compose.experimental {
 }
 
 tasks["wasmJsBrowserDistribution"].dependsOn(":serviceWorker:copyServiceWorker")
-//tasks["wasmJsBrowserDevelopmentRun"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")
+tasks["wasmJsDevelopmentExecutableCompileSync"].dependsOn(":serviceWorker:copyServiceWorkerWebpack")

@@ -31,11 +31,13 @@ fun main() {
     canvas.width = max(window.screen.width, window.screen.height)
     canvas.height = max(window.screen.width, window.screen.height)
 
-    if (window.navigator.serviceWorker != null) {
+    try {
         println("### Registering Service Worker")
         window.navigator.serviceWorker.register("/ComposePlaygroundKMM/serviceWorker.js")
             .then { println("Service worker registered!"); it }
             .catch { println("Service Worker registration failed: $it"); it }
+    } catch (e: Throwable) {
+        println("###: ${e.message}")
     }
 
     Window("Compose Playground") {
