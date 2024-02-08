@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import kotlinx.browser.window
 import org.w3c.dom.HTMLCanvasElement
-import ui.MainPlayground
+import ui.Main
 import kotlin.math.max
 
 fun main() {
@@ -41,7 +41,7 @@ fun main() {
     }
 
     Window("Compose Playground") {
-        MainPlayground(
+        Main(
             modifier = Modifier.size(
                 DpSize(
                     windowSize.width.toInt().dp,

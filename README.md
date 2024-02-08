@@ -6,8 +6,8 @@ Demo: TBD
 
 ## Get started
 
-Run app: `./gradlew :client:jsBrowserDevelopmentRun`
+Run app: `./gradlew :client:wasmJsBrowserDevelopmentRun`
 
-Run app with hot reload: `./gradlew :client:jsBrowserDevelopmentRun --continuous` _*will not hot reload service worker_
+Run app with hot reload: `./gradlew :client:wasmJsBrowserDevelopmentRun --continuous`
 
 Build for production: `./gradlew build`. The bundled files reside in `build/distributions` directory.
